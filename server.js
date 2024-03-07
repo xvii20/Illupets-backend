@@ -108,7 +108,7 @@ app.post('/createuser', async (req, res) => {
   try {
     // inserts a document to the MongoDB collection,
     const savedUser = await newUser.save();
-    console.log('User saved:', savedUser);
+    // console.log('User saved:', savedUser);
   } catch (error) {
     console.error('Error saving user:', error);
   }
