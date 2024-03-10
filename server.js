@@ -21,15 +21,15 @@ let LOCALDATABASE_URL = process.env.LOCALDATABASE_URL;
 let CLOUDDATABASE_URL = process.env.CLOUDDATABASE_URL;
 let LOCALHOST_URL = process.env.LOCALHOST_URL;
 
-// app.use(cors());
+app.use(cors());
 
 // origins allowed to make an http request to the server
-app.use(
-  cors({
-    // change needed here
-    origin: [`${LOCALHOST_URL}`, 'https://www.netlify.com/'],
-  })
-);
+// app.use(
+//   cors({
+//     // change needed here
+//     origin: [`${LOCALHOST_URL}`, 'https://www.netlify.com/'],
+//   })
+// );
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
