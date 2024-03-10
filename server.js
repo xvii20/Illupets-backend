@@ -14,12 +14,6 @@ app.use((req, res, next) => {
   // Sets Referrer-Policy
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
 
-  // Sets Content Security Policy headers
-  res.setHeader(
-    'Content-Security-Policy',
-    "default-src 'self'; connect-src https://api.example.com https://example.com"
-  );
-
   next();
 });
 
@@ -33,7 +27,7 @@ let LOCALHOST_URL = process.env.LOCALHOST_URL;
 app.use(
   cors({
     // change needed here
-    origin: [`${LOCALHOST_URL}`, 'https://netlify.com'],
+    origin: [`${LOCALHOST_URL}`, 'https://www.netlify.com/'],
   })
 );
 
