@@ -82,7 +82,7 @@ const userSchema = new mongoose.Schema({
 
 const LOCALDATABASE_NAME = process.env.LOCALDATABASE_NAME;
 const CLOUDDATABASE_NAME = process.env.CLOUDDATABASE_NAME;
-
+console.log(CLOUDDATABASE_NAME, 'clouddatabasename');
 const illupetsuser = mongoose.model(
   `${CLOUDDATABASE_NAME || LOCALDATABASE_NAME}`,
   userSchema
