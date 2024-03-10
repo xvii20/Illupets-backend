@@ -211,6 +211,10 @@ app.get('/:uid/favorites', async (req, res) => {
   }
 });
 
+app.get('/testing', (req, res) => {
+  res.send('testing');
+});
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
