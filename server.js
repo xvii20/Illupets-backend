@@ -14,6 +14,12 @@ app.use((req, res, next) => {
   // Sets Referrer-Policy
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
 
+  // Set Content Security Policy headers
+  res.setHeader(
+    'Content-Security-Policy',
+    "default-src 'self'; connect-src https://illupets.netlify.app https://illupets-backend.onrender.com"
+  );
+
   next();
 });
 
