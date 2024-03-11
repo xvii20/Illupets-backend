@@ -17,7 +17,7 @@ app.use((req, res, next) => {
   // Set Content Security Policy headers
   res.setHeader(
     'Content-Security-Policy',
-    "default-src 'self'; connect-src https://illupets.netlify.app https://illupets-backend.onrender.com img-src https://b.tile.openstreetmap.org img-src https://a.tile.openstreetmap.org img-src https://c.tile.openstreetmap.org "
+    "default-src 'self'; connect-src https://illupets.netlify.app https://illupets-backend.onrender.com; img-src https://b.tile.openstreetmap.org https://a.tile.openstreetmap.org https://c.tile.openstreetmap.org;"
   );
 
   next();
