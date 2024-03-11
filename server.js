@@ -26,7 +26,11 @@ let LOCALHOST_URL = process.env.LOCALHOST_URL;
 // origins allowed to make an http request to the server
 app.use(
   cors({
-    origin: [`${LOCALHOST_URL}`, 'https://illupets.netlify.app'],
+    origin: [
+      `${LOCALHOST_URL}`,
+      'https://illupets.netlify.app',
+      'https://illupets-backend.onrender.com',
+    ],
   })
 );
 
