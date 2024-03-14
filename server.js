@@ -24,7 +24,6 @@ app.use((req, res, next) => {
 });
 
 let LOCALDATABASE_URL = process.env.LOCALDATABASE_URL;
-let CLOUDDATABASE_URL = process.env.CLOUDDATABASE_URL;
 let LOCALHOST_URL = process.env.LOCALHOST_URL;
 
 // app.use(cors());
@@ -42,6 +41,12 @@ app.use(
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+const LOCALDATABASE_NAME = process.env.LOCALDATABASE_NAME;
+const CLOUDDATABASE_NAME = process.env.CLOUDDATABASE_NAME;
+const CLOUDDATABASE_URL = process.env.CLOUDDATABASE_URL;
+
+// console.log(CLOUDDATABASE_NAME, 'clouddatabasename');
 
 mongoose.connect(CLOUDDATABASE_URL || LOCALDATABASE_URL, {
   useNewUrlParser: true,
@@ -89,11 +94,8 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
-const LOCALDATABASE_NAME = process.env.LOCALDATABASE_NAME;
-const CLOUDDATABASE_NAME = process.env.CLOUDDATABASE_NAME;
-console.log(CLOUDDATABASE_NAME, 'clouddatabasename');
 const illupetsuser = mongoose.model(
-  `${CLOUDDATABASE_NAME || LOCALDATABASE_NAME}`,
+  `${CLOUDDATABASE_URL || LOCALDATABASE_NAME}`,
   userSchema
 );
 
