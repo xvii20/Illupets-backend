@@ -1,7 +1,23 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+
 require('dotenv').config();
+
+const cron = require('node-cron');
+const axios = require('axios');
+
+const backendurl = 'https://illupets-backend.onrender.com/testing';
+
+// make an http request to this endpoint every 14 minutes
+cron.schedule('*/14 * * * *', async () => {
+  try {
+    const response = await axios.get(backendurl);
+    console.log('HTTP request sent successfully:', response.data);
+  } catch (error) {
+    console.error('Error making HTTP request:', error.message);
+  }
+});
 
 const app = express();
 
@@ -48,14 +64,20 @@ const CLOUDDATABASE_URL = process.env.CLOUDDATABASE_URL;
 
 // console.log(CLOUDDATABASE_NAME, 'clouddatabasename');
 
-mongoose.connect(CLOUDDATABASE_URL || LOCALDATABASE_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+async function connectToDatabase() {
+  try {
+    await mongoose.connect(CLOUDDATABASE_URL || LOCALDATABASE_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error.message);
+    // Handle error appropriately
+  }
+}
 
-mongoose.connection.on('connected', () => {
-  // console.log('Connected to MongoDB');
-});
+connectToDatabase();
 
 // This is the model for users creating an account on the website. when a user creates an account, their email and uid will be posted to the database. the favorites array will be initially empty, until the user decides to favorite a pet.
 const userSchema = new mongoose.Schema({
