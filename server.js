@@ -45,13 +45,22 @@ let LOCALHOST_URL = process.env.LOCALHOST_URL;
 // app.use(cors());
 
 // origins allowed to make an http request to the server
+// app.use(
+//   cors({
+//     origin: [
+//       `${LOCALHOST_URL}`,
+//       'https://illupets.netlify.app',
+//       'https://illupets-backend.onrender.com',
+//     ],
+//   })
+// );
+
+// Allow all origins, methods, and headers
 app.use(
   cors({
-    origin: [
-      `${LOCALHOST_URL}`,
-      'https://illupets.netlify.app',
-      'https://illupets-backend.onrender.com',
-    ],
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // All HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
   })
 );
 
@@ -73,7 +82,6 @@ async function connectToDatabase() {
     console.log('Connected to MongoDB');
   } catch (error) {
     console.error('Error connecting to MongoDB:', error.message);
-    // Handle error appropriately
   }
 }
 
