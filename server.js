@@ -45,24 +45,26 @@ let LOCALHOST_URL = process.env.LOCALHOST_URL;
 // app.use(cors());
 
 // origins allowed to make an http request to the server
-// app.use(
-//   cors({
-//     origin: [
-//       `${LOCALHOST_URL}`,
-//       'https://illupets.netlify.app',
-//       'https://illupets-backend.onrender.com',
-//     ],
-//   })
-// );
-
-// Allow all origins, methods, and headers
 app.use(
   cors({
-    origin: '*',
+    origin: [
+      `${LOCALHOST_URL}`,
+      'https://illupets.netlify.app',
+      'https://illupets-backend.onrender.com',
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // All HTTP methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
   })
 );
+
+// // Allow all origins, methods, and headers
+// app.use(
+//   cors({
+//     origin: '*',
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // All HTTP methods
+//     allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
+//   })
+// );
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
